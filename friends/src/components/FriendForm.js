@@ -23,6 +23,25 @@ changeHandler = e => {
     })
 }
 
+submitHandler = e => {
+    if(this.props.activeFriend) {
+        this.props.updateFriend(e,this.state.friend);
+    }else{
+        this.props.addFriend(e,this.state.friend);
+    }
+    this.setState({
+        friend:{
+            age:'',
+            name:'',
+            email:''
+
+        }
+    })
+    }
+
+
+
+
     render() {
         return(
             <div>
