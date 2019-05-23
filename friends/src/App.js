@@ -19,17 +19,7 @@ class App extends React.Component {
       .catch(err => console.log(err))
   }
 
-  deleteHandler = (id) => {
-    return() => {
-      axios
-      .delete(`http://localhost:5000/friends/${id}`)
-      .then(res => {
-        this.setState({friends: res.data})
-      })
-      .catch(err => console.log(err))
-    }
-  }
-
+ 
   addFriend = (e,friend) => {
     e.preventDefault();
     axios
@@ -44,27 +34,12 @@ class App extends React.Component {
     })
   }
 
-  updateFriend = () => {
-    axios
-    .put(`http://localhost:5000/friends/${this.state.updateId}`,
-    this.state.friend
-    )
-    .then(res => {
-      this.setState({
-        friends: res.data,
-        updateId:null,
-        isUpdating:false,
-        friend:blankfriend
-      })
-    })
-    .catch(err => console.log(err))
-  }
-
   render() {
     return (
       <div>
         <div className='friend-form' />
-        <Form friends={this.state.friends} />
+        <Form friends={this.state.friends}
+        addFriend={this.addFriend} />
         {this.state.friends.map(friend => (
           <Friend friend={friend} />
         ))}
