@@ -44,6 +44,22 @@ class App extends React.Component {
     })
   }
 
+  updateFriend = () => {
+    axios
+    .put(`http://localhost:5000/friends/${this.state.updateId}`,
+    this.state.friend
+    )
+    .then(res => {
+      this.setState({
+        friends: res.data,
+        updateId:null,
+        isUpdating:false,
+        friend:blankfriend
+      })
+    })
+    .catch(err => console.log(err))
+  }
+
   render() {
     return (
       <div>
