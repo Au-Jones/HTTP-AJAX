@@ -6,7 +6,7 @@ class Form extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            friends: this.friend,
+            friends: props.friends,
             NewFriend: {
                 age: '',
                 name: '',
@@ -17,8 +17,7 @@ class Form extends React.Component {
     changeHandler = e => {
         this.setState({
             friend: {
-                ...this.state.friend,
-                [e.target.name]: e.target.value
+         [e.target.name]: e.target.value
             }
         })
     }
@@ -44,10 +43,10 @@ class Form extends React.Component {
         return (
             <div>
                 <form id='form' onSubmit={this.submitHandle}>
-                    <input type='text' id='name' placeholder='Name' />
-                    <input type='number' id='age' placeholder='Age' />
-                    <input type='email' id='email' placeholder='Email' />
-                    <button type='submit'>New Friend</button>
+                    <input onChange={this.changeHandler} type='text' id='name' placeholder='Name' name='name' value={this.state.friend.name}/>
+                    <input onChange={this.changeHandler} type='number' id='age' placeholder='Age' name='age'value={this.state.friend.age} />
+                    <input onChange={this.changeHandler}  type='email' id='email' placeholder='Email' name='email' value = {this.state.friend.email} />
+                    <button onChange={this.changeHandler}  type='submit'>New Friend</button>
                 </form>
 
             </div>
