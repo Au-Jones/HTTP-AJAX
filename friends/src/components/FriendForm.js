@@ -1,5 +1,6 @@
 import React from 'react'
 import Friend from './Friend'
+import axios from 'axios'
 
 class Form extends React.Component {
     constructor(props) {
@@ -13,6 +14,15 @@ class Form extends React.Component {
            } 
         }
     }
+changeHandler = e => {
+    this.setState({
+        friend: {
+            ...this.state.friend,
+            [e.target.name]: e.target.value
+        }
+    })
+}
+
     render() {
         return(
             <div>
